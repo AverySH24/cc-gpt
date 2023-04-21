@@ -5,6 +5,7 @@
 
 import tkinter
 import customtkinter as customtkinter
+import gpt
 
 # print("Hello")
 
@@ -90,13 +91,14 @@ class ChatPage(customtkinter.CTkFrame):
         self.controller = controller
         # print("CHAT" + page)
         convo = 0
-        if (not convo):
-            # there is a new page, you need to create a new conversation with a new prompt.
-            convo += 1
-
         def new_entry():
+            if (convo == 0):
+                data = gpt.start_convo(page)
+                convo = data["conversationId"]
+            else:
+                data = gpt.make_query(page, entry.get(), convo)
             textbox.insert("end", "You: " + entry.get() + "\n")
-            textbox.insert("end", page + ":" + entry.get() + "\n")
+            textbox.insert("end", page + ":" + data["response"] + "\n")
 
         entry = customtkinter.CTkEntry(self, fg_color = "transparent", border_width = 2, text_color = ("gray10", "#DCE4EE"))
         entry.grid(row=3, column=1, columnspan=2, padx=(20, 0), pady=(20, 20), sticky="nsew")
