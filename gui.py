@@ -24,20 +24,23 @@ class App(customtkinter.CTk):
         self.frames = {}
         for F in (StartPage, ChatPage):
             page_name = F.__name__
-            if F is ChatPage:
+            if (page_name == "ChatPage"):
                 for name in ("Beethoven", "Mozart", "Brahms", "Bach", "Tchaikovsky", "Chopin"):
                     frame = F(parent=container, controller=self, page = name)
-                    self.frames[page_name + name] = frame
+                    self.frames[name] = frame
+                    frame.grid(row=0, column=0, sticky="nsew")
             else:
                 frame = F(parent=container, controller=self, page = "start")
                 self.frames[page_name] = frame
+                frame.grid(row=0, column=0, sticky="nsew")
+        self.show_frame("StartPage")
+
 
             # put all of the pages in the same location;
             # the one on the top of the stacking order
             # will be the one that is visible.
-            frame.grid(row=0, column=0, sticky="nsew")
 
-        self.show_frame("StartPage")
+        
 
     def show_frame(self, page_name):
         '''Show a frame for the given page name'''
@@ -45,13 +48,14 @@ class App(customtkinter.CTk):
         frame.tkraise()
 
 
+
 class StartPage(customtkinter.CTkFrame):
 
-    def __init__(self, parent, controller):
+    def __init__(self, parent, controller, page):
         
         def button_function(composer):
-            print(composer)
-            controller.show_frame("ChatPage" + composer)
+            # print(composer)
+            controller.show_frame(composer)
 
 
         customtkinter.CTkFrame.__init__(self, parent)
@@ -81,10 +85,10 @@ class StartPage(customtkinter.CTkFrame):
 
 # CHANGE TO FRAME LATER
 class ChatPage(customtkinter.CTkFrame):
-    def __init__(self, parent, controller, name):
+    def __init__(self, parent, controller, page):
         customtkinter.CTkFrame.__init__(self, parent)
         self.controller = controller
-
+        # print("CHAT" + page)
         convo = 0
         if (not convo):
             # there is a new page, you need to create a new conversation with a new prompt.
@@ -92,7 +96,7 @@ class ChatPage(customtkinter.CTkFrame):
 
         def new_entry():
             textbox.insert("end", "You: " + entry.get() + "\n")
-            textbox.insert("end", name + ":" + entry.get() + "\n")
+            textbox.insert("end", page + ":" + entry.get() + "\n")
 
         entry = customtkinter.CTkEntry(self, fg_color = "transparent", border_width = 2, text_color = ("gray10", "#DCE4EE"))
         entry.grid(row=3, column=1, columnspan=2, padx=(20, 0), pady=(20, 20), sticky="nsew")
