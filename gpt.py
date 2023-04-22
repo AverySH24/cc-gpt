@@ -20,7 +20,7 @@ headers = {
 # print(json_data["conversationId"] + " -- This is the conversation id!\n")
 
 def make_query(name, query, conversation):
-    payload = "{\r    \"query\": \""+ query + ". Remember to answer as if you were " + name + ", the famous classical music composer.\",\r\"conversationId\": \"" + conversation + "\"\r}"
+    payload = "{\r   \"query\": \""+ query + ". Remember to answer as if you were " + name + ", the famous classical music composer.\",\r\"conversationId\": \"" + conversation + "\"\r}"
     conn.request("POST", "/ask", payload, headers)
     res = conn.getresponse()
     # data serves as a json object in this case

@@ -61,8 +61,8 @@ class StartPage(customtkinter.CTkFrame):
 
         customtkinter.CTkFrame.__init__(self, parent)
         
-        self.label = customtkinter.CTkLabel("Start Page")
-        self.label.grid(row=0, column=0, padx=20)
+        # self.label = customtkinter.CTkLabel("Start Page")
+        # self.label.grid(row=0, column=0, padx=20)
         self.controller = controller
 
             # Use CTkButton instead of tkinter Button
@@ -91,26 +91,30 @@ class StartPage(customtkinter.CTkFrame):
 class ChatPage(customtkinter.CTkFrame):
     def __init__(self, parent, controller, page):
         customtkinter.CTkFrame.__init__(self, parent)
-        
-        self.label = customtkinter.CTkLabel(page)
-        self.label.grid(row=0, column=0, padx=20)
         self.controller = controller
         # print("CHAT" + page)
-        convo_num = 0
-        if (convo_num == 0):
-            data = gpt.start_convo(page)
-            convo_num = data["conversationId"]
-            textbox.insert("end", page + ":" + data["response"] + "\n\n")
+        convo = 0
+        # if (convo == 0):
+        #     data_first = gpt.start_convo(page)
+        #     convo = data_first["conversationId"]
+        # if (convo_num == 0):
+        #     data = gpt.start_convo(page)
+        #     convo_num = data["conversationId"]
+        #     textbox.insert("end", page + ":" + data["response"] + "\n\n")
 
-        def new_entry(convo):
-            data = gpt.make_query(page, entry.get(), convo)
+        def new_entry(convo_num):
+            data = gpt.make_query(page, entry.get(), convo_num)
             textbox.insert("end", "You: " + entry.get() + "\n\n")
             textbox.insert("end", page + ":" + data["response"] + "\n\n")
 
         entry = customtkinter.CTkEntry(self, fg_color = "transparent", border_width = 2, text_color = ("gray10", "#DCE4EE"))
         entry.grid(row=3, column=1, columnspan=2, padx=(20, 0), pady=(20, 20), sticky="nsew")
 
-        main_button_1 = customtkinter.CTkButton(self, fg_color="transparent", border_width=2, text = "Send", text_color=("gray10", "#DCE4EE"), command = lambda: new_entry(convo_num))
+        self.textbox = customtkinter.CTkTextbox(master=self, width=400, corner_radius=0)
+        self.textbox.grid(row=0, column=0, sticky="nsew")
+        self.textbox.insert("0.0", "Some example text!\n" * 50)
+
+        main_button_1 = customtkinter.CTkButton(self, fg_color="transparent", border_width=2, text = "Send", text_color=("gray10", "#DCE4EE"), command = lambda: new_entry(convo))
         main_button_1.grid(row=3, column=3, padx=(20, 20), pady=(20, 20), sticky="nsew")
 
         textbox = customtkinter.CTkTextbox(self, width=250)
