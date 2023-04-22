@@ -115,7 +115,7 @@ class ChatPage(customtkinter.CTkFrame):
         def new_entry(convo_num):
             data = gpt.make_query(page, entry.get(), convo_num)
             textbox.insert("end", "You: " + entry.get() + "\n\n")
-            textbox.insert("end", page + ":" + data["response"] + "\n\n")
+            textbox.insert("end", page + ": " + data["response"] + "\n\n")
 
 
 app = App()
