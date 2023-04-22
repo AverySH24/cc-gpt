@@ -94,13 +94,10 @@ class ChatPage(customtkinter.CTkFrame):
         label.place(relx=0.5, rely=0.85, anchor=tkinter.CENTER)
         # print("CHAT" + page)
         convo = 0
+
         if (convo == 0):
-            data_first = gpt.start_convo(page)
-            convo = data_first["conversationId"]
-            
-        if (convo_num == 0):
             data = gpt.start_convo(page)
-            convo_num = data["conversationId"]
+            convo = data["conversationId"]
             textbox.insert("end", page + ":" + data["response"] + "\n\n")
 
         def new_entry(convo_num):
