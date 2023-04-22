@@ -91,7 +91,7 @@ class ChatPage(customtkinter.CTkFrame):
         self.controller = controller
         
         label = customtkinter.CTkLabel(master=self, text=page)
-        label.place(relx=0.5, rely=0.5, anchor=tkinter.CENTER)
+        label.place(relx=0.5, rely=0.85, anchor=tkinter.CENTER)
         # print("CHAT" + page)
         convo = 0
         # if (convo == 0):
