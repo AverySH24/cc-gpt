@@ -93,6 +93,7 @@ class ChatPage(customtkinter.CTkFrame):
         convo_num = 0
         if (convo_num == 0):
                 data = gpt.start_convo(page)
+                print(data)
                 convo_num = data["conversationId"]
 
         def new_entry(convo):
