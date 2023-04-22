@@ -95,16 +95,6 @@ class ChatPage(customtkinter.CTkFrame):
         # print("CHAT" + page)
         convo = 0
 
-        if (convo == 0):
-            data = gpt.start_convo(page)
-            convo = data["conversationId"]
-            textbox.insert("end", page + ":" + data["response"] + "\n\n")
-
-        def new_entry(convo_num):
-            data = gpt.make_query(page, entry.get(), convo_num)
-            textbox.insert("end", "You: " + entry.get() + "\n\n")
-            textbox.insert("end", page + ":" + data["response"] + "\n\n")
-
         entry = customtkinter.CTkEntry(self, fg_color = "transparent", border_width = 2, text_color = ("gray10", "#DCE4EE"))
         entry.grid(row=3, column=1, columnspan=2, padx=(20, 0), pady=(20, 20), sticky="nsew")
 
@@ -116,6 +106,16 @@ class ChatPage(customtkinter.CTkFrame):
 
         home_button = customtkinter.CTkButton(self, fg_color="transparent", border_width=2, text = "Back", text_color=("gray10", "#DCE4EE"), command = lambda: controller.show_frame("StartPage"))
         home_button.grid(row=2, column=3, padx=(20, 20), pady=(20, 20), sticky="nsew")
+
+        if (convo == 0):
+            data = gpt.start_convo(page)
+            convo = data["conversationId"]
+            textbox.insert("end", page + ":" + data["response"] + "\n\n")
+        
+        def new_entry(convo_num):
+            data = gpt.make_query(page, entry.get(), convo_num)
+            textbox.insert("end", "You: " + entry.get() + "\n\n")
+            textbox.insert("end", page + ":" + data["response"] + "\n\n")
 
 
 app = App()
