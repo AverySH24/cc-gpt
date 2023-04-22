@@ -60,8 +60,10 @@ class StartPage(customtkinter.CTkFrame):
 
 
         customtkinter.CTkFrame.__init__(self, parent)
+        
+        self.label = customtkinter.CTkLabel("Start Page")
+        self.label.grid(row=0, column=0, padx=20)
         self.controller = controller
-        parent.title("Menu")
 
             # Use CTkButton instead of tkinter Button
         buttonBeethoven = customtkinter.CTkButton(self, text="Beethoven", command= lambda: button_function("Beethoven"))
@@ -89,8 +91,10 @@ class StartPage(customtkinter.CTkFrame):
 class ChatPage(customtkinter.CTkFrame):
     def __init__(self, parent, controller, page):
         customtkinter.CTkFrame.__init__(self, parent)
+        
+        self.label = customtkinter.CTkLabel(page)
+        self.label.grid(row=0, column=0, padx=20)
         self.controller = controller
-        parent.title(page)
         # print("CHAT" + page)
         convo_num = 0
         if (convo_num == 0):
