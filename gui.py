@@ -82,7 +82,8 @@ class StartPage(customtkinter.CTkFrame):
         buttonTchaikovsky.place(relx=0.25, rely=0.75, anchor=tkinter.CENTER)
 
         buttonChopin = customtkinter.CTkButton(self, text="Chopin", command=lambda: button_function("Chopin"))
-        buttonChopin.place(relx=0.75, rely=0.75, anchor=tkinter.CENTERself
+        buttonChopin.place(relx=0.75, rely=0.75, anchor=tkinter.CENTER)
+        
 # CHANGE TO FRAME LATER
 class ChatPage(customtkinter.CTkFrame):
     def __init__(self, parent, controller, page):
