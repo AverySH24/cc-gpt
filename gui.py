@@ -90,8 +90,9 @@ class ChatPage(customtkinter.CTkFrame):
         customtkinter.CTkFrame.__init__(self, parent)
         self.controller = controller
         # print("CHAT" + page)
-        convo = 0
-        def new_entry():
+        convo_num = 0
+        
+        def new_entry(convo):
             if (convo == 0):
                 data = gpt.start_convo(page)
                 convo = data["conversationId"]
@@ -103,7 +104,7 @@ class ChatPage(customtkinter.CTkFrame):
         entry = customtkinter.CTkEntry(self, fg_color = "transparent", border_width = 2, text_color = ("gray10", "#DCE4EE"))
         entry.grid(row=3, column=1, columnspan=2, padx=(20, 0), pady=(20, 20), sticky="nsew")
 
-        main_button_1 = customtkinter.CTkButton(self, fg_color="transparent", border_width=2, text = "Send", text_color=("gray10", "#DCE4EE"), command = new_entry)
+        main_button_1 = customtkinter.CTkButton(self, fg_color="transparent", border_width=2, text = "Send", text_color=("gray10", "#DCE4EE"), command = lambda: new_entry(convo_num))
         main_button_1.grid(row=3, column=3, padx=(20, 20), pady=(20, 20), sticky="nsew")
 
         textbox = customtkinter.CTkTextbox(self, width=250)
