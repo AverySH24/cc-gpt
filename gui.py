@@ -61,7 +61,7 @@ class StartPage(customtkinter.CTkFrame):
 
         customtkinter.CTkFrame.__init__(self, parent)
         self.controller = controller
-        self.parent.title("Menu")
+        parent.title("Menu")
 
             # Use CTkButton instead of tkinter Button
         buttonBeethoven = customtkinter.CTkButton(self, text="Beethoven", command= lambda: button_function("Beethoven"))
@@ -90,14 +90,14 @@ class ChatPage(customtkinter.CTkFrame):
     def __init__(self, parent, controller, page):
         customtkinter.CTkFrame.__init__(self, parent)
         self.controller = controller
-        self.parent.title(page)
+        parent.title(page)
         # print("CHAT" + page)
         convo_num = 0
         if (convo_num == 0):
             data = gpt.start_convo(page)
             convo_num = data["conversationId"]
             textbox.insert("end", page + ":" + data["response"] + "\n\n")
-            
+
         def new_entry(convo):
             data = gpt.make_query(page, entry.get(), convo)
             textbox.insert("end", "You: " + entry.get() + "\n\n")
