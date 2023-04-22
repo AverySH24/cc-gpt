@@ -110,10 +110,6 @@ class ChatPage(customtkinter.CTkFrame):
         entry = customtkinter.CTkEntry(self, fg_color = "transparent", border_width = 2, text_color = ("gray10", "#DCE4EE"))
         entry.grid(row=3, column=1, columnspan=2, padx=(20, 0), pady=(20, 20), sticky="nsew")
 
-        self.textbox = customtkinter.CTkTextbox(master=self, width=400, corner_radius=0)
-        self.textbox.grid(row=0, column=0, sticky="nsew")
-        self.textbox.insert("0.0", "Some example text!\n" * 50)
-
         main_button_1 = customtkinter.CTkButton(self, fg_color="transparent", border_width=2, text = "Send", text_color=("gray10", "#DCE4EE"), command = lambda: new_entry(convo))
         main_button_1.grid(row=3, column=3, padx=(20, 20), pady=(20, 20), sticky="nsew")
 
