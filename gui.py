@@ -1,3 +1,18 @@
+'''
+Name: Classical Composer Chatbot
+Developers: Avery Hsieh and Esther Zhu
+Description: This is designed to be a chatbot that
+can act as the composer and hold the relavant information
+for a student to communicate with the chatbot.
+
+Work division: Esther and I basically sat down in increments and coded together
+on the same machine. It was easier for us to divide the work as this 
+was the first time we had ever coded with customtkinter and the ChatGPT API
+so we were unsure how much labor would be required for each part.
+'''
+
+
+
 # pip install customtkinter
 # https://www.youtube.com/watch?v=iM3kjbbKHQU
 
@@ -7,7 +22,6 @@ import tkinter
 import customtkinter as customtkinter
 import gpt
 
-# print("Hello")
 
 class App(customtkinter.CTk):
 
@@ -84,7 +98,7 @@ class StartPage(customtkinter.CTkFrame):
         buttonChopin = customtkinter.CTkButton(self, text="Chopin", command=lambda: button_function("Chopin"))
         buttonChopin.place(relx=0.75, rely=0.75, anchor=tkinter.CENTER)
         
-# CHANGE TO FRAME LATER
+
 class ChatPage(customtkinter.CTkFrame):
     def __init__(self, parent, controller, page):
         customtkinter.CTkFrame.__init__(self, parent)

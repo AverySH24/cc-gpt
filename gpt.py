@@ -4,9 +4,6 @@ import config
 
 conn = http.client.HTTPSConnection(config.http_connection)
 
-# query is what is google?
-
-
 headers = {
     'content-type': "application/json",
     'X-RapidAPI-Key': config.api_key,
